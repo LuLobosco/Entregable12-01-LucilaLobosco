@@ -9,8 +9,14 @@ Lista de administrativos
 {% block contect %}
 
     <h1>Listado de administrativos</h1>
+    <nav>
+      <form class="form-inline my-2 my-lg-0" action = "/Administrativos/list_administrativo/" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  </nav>  
     <h2>Crear administrativo </h2> <a href="/Administrativos/create_administrativo/" class="btn btn-primary">Crear</a>
-    
+ 
   {% for administrativo in administrativo %}
 
     <div class="card" style="width: 18rem;">
