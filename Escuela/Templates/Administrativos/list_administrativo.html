@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Lista de administrativos
+
+{% endblock %}
+
+{% block contect %}
+
+    <h1>Listado de administrativos</h1>
+    <h2>Crear administrativo </h2> <a href="/Administrativos/create_administrativo/" class="btn btn-primary">Crear</a>
+    
+  {% for administrativo in administrativo %}
+
+    <div class="card" style="width: 18rem;">
+        <img src="https://images.emojiterra.com/openmoji/v13.1/512px/1f60a.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> {{administrativo.name}}</h5>
+          <p class="card-text"> Edad: {{administrativo.age}}</p>
+          <p>Usuario activo? {{administrativo.activo}}</p>
+          <a href="#" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
+
+
+        
+  {% endfor %}
+
+{% endblock %}

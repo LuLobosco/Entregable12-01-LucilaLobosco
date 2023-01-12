@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Crear alumno
+
+{% endblock %}
+
+{% block contect %}
+
+<h1>hola desde la creacion_alumno</h1>
+
+{% if form %}
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+
+        <table>
+            {{form.as_table}}
+        </table>
+
+        <input type="submit" value = "Crear">
+    </form>
+
+{% else %}
+    <p>Alumno creado</p>
+{% endif %}
+
+{% if form_errors %}
+
+        {{form_errors}}
+
+{% endif %}
+
+{% endblock %}

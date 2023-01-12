@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Lista de profesores
+
+{% endblock %}
+
+{% block contect %}
+
+    <h1>Listado de profesores</h1>
+    <h2>Crear profesor</h2> <a href="/Profesores/create_profesor/" class="btn btn-primary">Crear</a>
+    
+  {% for profesor in profesor %}
+
+    <div class="card" style="width: 18rem;">
+        <img src="https://images.emojiterra.com/openmoji/v13.1/512px/1f60a.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> {{profesor.name}}</h5>
+          <p class="card-text"> Edad: {{profesor.age}}</p>
+          <p class="card-text"> Materia: {{profesor.Materia}}</p>
+          <p>Usuario activo? {{profesor.activo}}</p>
+          <a href="#" class="btn btn-primary">Ver</a>
+        </div>
+      </div>
+
+
+        
+  {% endfor %}
+
+{% endblock %}
