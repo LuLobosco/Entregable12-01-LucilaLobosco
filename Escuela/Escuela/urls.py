@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from Escuela.views import index
+from Escuela.views import index, Acerca_de_mi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('Administrativos/',include('Administrativos.urls')),
     path('Alumnos/',include('Alumnos.urls')),
     path('Profesores/',include('Profesores.urls')),
+    path('Acerca_de_mi/',Acerca_de_mi)
 ]
 

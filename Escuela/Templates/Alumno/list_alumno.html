@@ -25,7 +25,8 @@ Lista de Alumnos
           <h5 class="card-title"> {{alumno.name}}</h5>
           <p class="card-text"> Edad: {{alumno.age}}</p>
           <p>Usuario activo? {{alumno.activo}}</p>
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="/Alumnos/update_alumno/{{alumno.id}}/" class="btn btn-primary">Actualizar</a>
+          <a href="/Alumnos/delete_alumno/{{alumno.id}}/" class="btn btn-danger">Borrar</a>
         </div>
       </div>
 
