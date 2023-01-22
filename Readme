@@ -1,0 +1,3 @@
+El entregable se basa en una Escuela, la cual cuenta con Alumnos, Profesores y Administrativos.
+Se crearon vistas para la creacion y para listar cada unos de ellos.
+En la pagina web se puede ver en varias cards a los integrantes de cada grupo y se puede filtrar por los mismos con el uso del search.
