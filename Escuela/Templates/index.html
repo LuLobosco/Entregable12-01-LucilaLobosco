@@ -11,4 +11,12 @@
 
 <h1>Inicio</h1>
 
+    {{request.user}}
+
+    {% if message %}
+
+        <h2>{{message}}</h2>
+
+    {% endif %}
+
 {% endblock %}
