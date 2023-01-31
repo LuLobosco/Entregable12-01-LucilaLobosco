@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required 
 
-from users.forms import RegisterForm,UserUpdateForm
+from users.forms import RegisterForm,UserUpdateForm,UserProfileForm
+from users.models import UserProfile
 
 def login_view (request):
     if request.method == 'GET':
@@ -50,7 +51,8 @@ def register (request):
     elif request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            UserProfile.objects.create(user= user)
             return redirect('login')
         context = {
             'errors': form.errors,
@@ -86,3 +88,23 @@ def update_user(request):
             'form': UserUpdateForm()
         }
         return render (request,'users/update_user.html',context = context)
+
+def update_user_profile (request):
+    if request.method == 'GET':
+        form = UserProfileForm()
+        context = {
+
+            'form': form
+        }
+        return render (request,'users/update_user_profile.html',context = context)
+
+    elif request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+        context = {
+            'errors': form.errors,
+            'form': UserProfileForm()
+        }
+        return render (request,'users/update_user_profile.html',context = context)
