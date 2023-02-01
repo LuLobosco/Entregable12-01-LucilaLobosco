@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Lista de perfiles
+
+{% endblock %}
+
+{% block contect %}
+
+    <h1>Listado de perfiles</h1>
+    <nav>
+      <form class="form-inline my-2 my-lg-0" action = "/users/list_profile/" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" user = "search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  </nav> 
+    
+  {% for user in user %}
+
+    <div class="card" style="width: 18rem;">
+        <img src="https://images.emojiterra.com/openmoji/v13.1/512px/1f60a.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> user: {{user.user}}</h5>
+          <p class="card-text"> descripcion: {{user.description}}</p>
+          <p>E-mail: {{user.email}}</p>
+
+          {% if request.user.is_authenticated %}
+          <a href="/Alumnos/delete_alumno/{{alumno.id}}/" class="btn btn-danger">Borrar</a>
+          <a href="/users/update/profile/" class="btn btn-primary">Actualizar</a>
+
+          {% else %}
+          <li class="nav-item active" style="margin-left: 800px">
+            <a class="nav-link" href="/users/login/"> Login <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+        </div>
+      </div>
+
+
+        
+  {% endfor %}
+
+{% endblock %}

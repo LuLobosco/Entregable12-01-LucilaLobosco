@@ -1,9 +1,9 @@
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User 
 from django.contrib.auth.decorators import login_required 
+#from django.views.generic import ListView, CreateView,DeleteView
 
 from users.forms import RegisterForm,UserUpdateForm,UserProfileForm
 from users.models import UserProfile
@@ -91,7 +91,13 @@ def update_user(request):
 
 def update_user_profile (request):
     if request.method == 'GET':
-        form = UserProfileForm()
+        form = UserProfileForm( initial={
+        'user': request.user.profile.user,
+        'description': request.user.profile.description,
+        'link': request.user.profile.link,
+        'email': request.user.profile.email,
+        'profile_picture' : request.user.profile.profile_picture
+            })
         context = {
 
             'form': form
@@ -99,12 +105,28 @@ def update_user_profile (request):
         return render (request,'users/update_user_profile.html',context = context)
 
     elif request.method == 'POST':
-        form = UserProfileForm(request.POST)
+        form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            request.user.profile.description = form.cleaned_data.get('description')
+            request.user.profile.link = form.cleaned_data.get('link')
+            request.user.profile.email = form.cleaned_data.get('email')
+            request.user.profile.profile_picture = form.cleaned_data.get('profile_picture')
+            request.user.profile.save()
+            return redirect('index')
         context = {
             'errors': form.errors,
             'form': UserProfileForm()
         }
         return render (request,'users/update_user_profile.html',context = context)
+
+def list_profile(request):
+
+    if 'search' in request.GET:
+        search = request.GET['search']
+        user = UserProfile.objects.filter(name__contains = search)
+    else:
+        user = UserProfile.objects.all()
+    context = {
+        'user': user,
+    }
+    return render(request,'users/list_profile.html', context = context )
