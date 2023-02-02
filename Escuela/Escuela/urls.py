@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from index.views import list_index
 
 
 from Escuela.views import index, Acerca_de_mi
@@ -24,7 +25,7 @@ from Escuela.settings import MEDIA_ROOT, MEDIA_URL
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name = 'index'),
+    path('',list_index, name = 'index'),
     path('Administrativos/',include('Administrativos.urls')),
     path('Alumnos/',include('Alumnos.urls')),
     path('Profesores/',include('Profesores.urls')),

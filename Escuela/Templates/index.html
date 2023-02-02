@@ -9,14 +9,12 @@
 
 {% block contect %}
 
-<h1>Inicio</h1>
-
-    {{request.user}}
-
-    {% if message %}
-
-        <h2>{{message}}</h2>
-
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% if request.user.is_authenticated %}
+    {% for ImageIndex in pictures %}
+    {% if ImageIndex.index_picture.url != '' %}
+    <img src= "{{ImageIndex.index_picture.url}}" alt = "..." width="100px" height="100px" >
+    {%endif%}
+    {%endfor%}
     {% endif %}
-
 {% endblock %}
