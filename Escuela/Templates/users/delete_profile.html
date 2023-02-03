@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Confirmacion de borrado
+
+{% endblock %}
+
+{% block contect %}
+
+    <h2>Perfil a borrar {{object.user}}</h2>
+    <p>Seguro que deseas eliminarlo?</p>
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+        <input type="submit" value = "Eliminar"
+            style = "background-color: red; color:white;">
+    </form>
+
+    {% endblock %}

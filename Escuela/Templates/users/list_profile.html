@@ -12,7 +12,7 @@ Lista de perfiles
     <nav>
       <form class="form-inline my-2 my-lg-0" action = "/users/list_profile/" method="GET">
         {% if request.user.is_authenticated %}
-        <a href="/Alumnos/delete_alumno/{{alumno.id}}/" class="btn btn-danger">Borrar</a>
+        <a href="/users/delete_profile/{{request.user.profile.pk}}/" class="btn btn-danger">Borrar</a>
         <a href="/users/update/profile/" class="btn btn-primary">Actualizar</a>
         {% else %}
         <li class="nav-item active" style="margin-left: 800px">

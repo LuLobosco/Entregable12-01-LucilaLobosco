@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required 
-#from django.views.generic import ListView, CreateView,DeleteView
+from django.views.generic import DeleteView
 
 from users.forms import RegisterForm,UserUpdateForm,UserProfileForm
 from users.models import UserProfile
@@ -130,3 +130,8 @@ def list_profile(request):
         'user': user,
     }
     return render(request,'users/list_profile.html', context = context )
+
+class ProfileDeleteView(DeleteView):
+    model = UserProfile
+    template_name = 'users/delete_profile.html'
+    success_url = '/users/list_profile/'

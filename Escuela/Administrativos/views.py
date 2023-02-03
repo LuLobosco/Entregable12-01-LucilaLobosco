@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-
+from django.views.generic import DeleteView
 from Administrativos.models import Administrativos
 from Administrativos.forms import AdministrativoForm
 
@@ -40,3 +40,41 @@ def list_administrativo(request):
     }
     return render(request,'Administrativos/list_administrativo.html', context = context )
 
+def update_administrativo(request,id):
+
+    if  request.method == 'GET':
+        administrativo = Administrativos.objects.get(id=id)
+        context = {
+            'form' : AdministrativoForm(
+                initial = {
+                    'name' : administrativo.name,
+                    'age' : administrativo.age,
+                    'activo' : administrativo.activo,
+                }
+            )
+        }
+        return render(request, 'Administrativos/update_administrativo.html', context=context)
+
+    elif request.method == 'POST':
+        form = AdministrativoForm(request.POST)
+        administrativo = Administrativos.objects.get(id=id)
+        if form.is_valid():
+            administrativo.name = form.cleaned_data['name']
+            administrativo.age = form.cleaned_data['age']
+            administrativo.activo = form.cleaned_data['activo']
+            administrativo.save()
+
+            context={
+                'message': 'Administrativo actualizado exitosamente'
+            }
+        else:
+                context= {
+                'form_errors': form.erros,
+                'form' : AdministrativoForm()
+            }
+        return render(request, 'Administrativo/update_Administrativo.html', context=context)
+
+class AdministrativoDeleteView(DeleteView):
+    model = Administrativos
+    template_name = 'Administrativo/delete_Administrativo.html'
+    success_url = '/Administrativo/list_Administrativo/'

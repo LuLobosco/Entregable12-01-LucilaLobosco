@@ -30,8 +30,11 @@
                   <a class="nav-link" href="/Profesores/list_profesor/"> Lista de profesores <span class="sr-only">(current)</span></a>
                 </li>
                 {% if request.user.is_authenticated %}
-                <li class="nav-item active"style="margin-left: 800px">
+                <li class="nav-item active"style="margin-left: 900px">
                   <a class="nav-link" href="/users/logout/"> Logout <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/users/list_profile/"> Perfiles <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="/users/update_user/"> {{request.user.username}} <span class="sr-only">(current)</span></a>
