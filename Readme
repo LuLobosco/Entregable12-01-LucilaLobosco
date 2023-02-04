@@ -1,3 +1,36 @@
-El entregable se basa en una Escuela, la cual cuenta con Alumnos, Profesores y Administrativos.
-Se crearon vistas para la creacion y para listar cada unos de ellos.
-En la pagina web se puede ver en varias cards a los integrantes de cada grupo y se puede filtrar por los mismos con el uso del search.
+El entregable se basa en una Escuela.
+Las apps del proyecto son: Profesores,Alumnos,Administrativos, user e Index. A contiancion detallo los models, forms y views de cada app.
+
+Profesores:
+  -Form : ProfesorForm
+  -Models:Profesores
+  -Views: create_profesor, list_profesor, update_profesor y ProfesorDeleteView
+  
+ Alumnos:
+   -Form : AlumnosForm
+   -Models:Alumnos
+   -Views: create_alumno, list_alumno, update_alumno y AlumnosDeleteView
+  
+  Administrativos:
+    -Form : AdministrativoForm
+    -Models:Administrativos
+    -Views: create_administrativo, list_administrativo, update_administrativo y AdministrativoDeleteView
+    
+  User:
+    -Form : RegisterForm, UserUpdateForm, UserProfileForm
+    -Models:UserProfile
+    -Views: login_view, register, update_user, update_user_profile, list_profile y ProfileDeleteView
+      
+  Index: 
+    -Form : UploadModelForm
+    -Models:ImageIndex
+    -Views: list_index
+    
+En la pagina principal se puede acceder al Inicio, Acerca de mi, Lista de administrativos, Lista de alumnos, Lista de profesores (estos ultimos 3 se puede actualizar y borrar,
+con el boton crear arriba de todo se puede agregar uno nuevo), Loguot, Perfiles y el nombre con una imagen de perfil en caso de estar logeado. 
+
+Un punto importante a recalcar es que el perfil que se puede actualizar o borrar es solo el que se esta logeado.
+    
+ superuser: Lucila
+ pass:luli1
+    
