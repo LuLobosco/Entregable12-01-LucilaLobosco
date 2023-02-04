@@ -30,13 +30,6 @@ def create_alumno(request):
             return render(request, 'Alumno/create_alumno.html', context=context)
 
 
-class AlumnosCreateView(CreateView):
-    model = Alumnos
-    template_name = 'Alumno/create_alumno.html'
-    fields = '__all__'
-    success_url = 'Alumno/list_alumno.html'
-
-
 def list_alumno(request):
 
     if 'search' in request.GET:
@@ -50,16 +43,10 @@ def list_alumno(request):
     return render(request,'Alumno/list_alumno.html', context = context )
 
 
-class AlumnosListViews(ListView):
-    model= Alumnos
-    template_name = 'Alumno/list_alumno.html'
-    queryset = Alumnos.objects.filter(activo = True)
-
-
-def update_alumno(request,id):
+def update_alumno(request,pk):
 
     if  request.method == 'GET':
-        alumno = Alumnos.objects.get(id=id)
+        alumno = Alumnos.objects.get(id=pk)
         context = {
             'form' : AlumnosForm(
                 initial = {
@@ -73,7 +60,7 @@ def update_alumno(request,id):
 
     elif request.method == 'POST':
         form = AlumnosForm(request.POST)
-        alumno = Alumnos.objects.get(id=id)
+        alumno = Alumnos.objects.get(id=pk)
         if form.is_valid():
             alumno.name = form.cleaned_data['name']
             alumno.age = form.cleaned_data['age']
@@ -90,7 +77,47 @@ def update_alumno(request,id):
             }
         return render(request, 'Alumno/update_alumno.html', context=context)
 
+
 class AlumnosDeleteView(DeleteView):
     model = Alumnos
     template_name = 'Alumno/delete_alumno.html'
     success_url = '/Alumnos/list_alumno/'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class AlumnosCreateView(CreateView):
+    model = Alumnos
+    template_name = 'Alumno/create_alumno.html'
+    fields = '__all__'
+    success_url = 'Alumno/list_alumno.html'
+
+class AlumnosListViews(ListView):
+    model= Alumnos
+    template_name = 'Alumno/list_alumno.html'
+    queryset = Alumnos.objects.filter(activo = True)

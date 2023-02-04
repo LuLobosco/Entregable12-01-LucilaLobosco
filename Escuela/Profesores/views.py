@@ -43,16 +43,17 @@ def list_profesor(request):
     return render(request,'Profesores/list_profesores.html', context = context )
     
 
-def update_profesor(request,id):
+def update_profesor(request,pk):
 
     if  request.method == 'GET':
-        Profesor = Profesores.objects.get(id=id)
+        Profesor = Profesores.objects.get(id=pk)
         context = {
-            'form' : AdministrativoForm(
+            'form' : ProfesorForm(
                 initial = {
                     'name' : Profesor.name,
                     'age' : Profesor.age,
-                    'activo' : Profesor.activo,
+                    'Materia' : Profesor.Materia,
+                    'activo': Profesor.activo,
                 }
             )
         }
@@ -60,10 +61,11 @@ def update_profesor(request,id):
 
     elif request.method == 'POST':
         form = ProfesorForm(request.POST)
-        Profesor = Profesores.objects.get(id=id)
+        Profesor = Profesores.objects.get(id=pk)
         if form.is_valid():
             Profesores.name = form.cleaned_data['name']
             Profesores.age = form.cleaned_data['age']
+            Profesores.Materia = form.cleaned_data['Materia']
             Profesores.activo = form.cleaned_data['activo']
             Profesores.save()
 
@@ -75,7 +77,7 @@ def update_profesor(request,id):
                 'form_errors': form.erros,
                 'form' : ProfesorForm()
             }
-        return render(request, 'Profesor/update_profesor.html', context=context)
+        return render(request, 'Profesores/update_profesor.html', context=context)
 
 class ProfesorDeleteView(DeleteView):
     model = Profesores

@@ -4,6 +4,6 @@ from Administrativos.views import create_administrativo, list_administrativo,upd
 urlpatterns = [
     path('create_administrativo/',create_administrativo),
     path('list_administrativo/', list_administrativo),
-    path('update_administrativo/', update_administrativo),
+    path('update_administrativo/<int:pk>/', update_administrativo),
     path('delete_administrativo/<int:pk>/',AdministrativoDeleteView.as_view())
 ]

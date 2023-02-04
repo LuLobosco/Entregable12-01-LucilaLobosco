@@ -26,7 +26,8 @@ Lista de profesores
           <p class="card-text"> Edad: {{profesor.age}}</p>
           <p class="card-text"> Materia: {{profesor.Materia}}</p>
           <p>Usuario activo? {{profesor.activo}}</p>
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="/Profesores/update_profesor/{{profesor.id}}/" class="btn btn-primary">Actualizar</a>
+          <a href="/Profesores/delete_profesor/{{profesor.id}}/" class="btn btn-danger">Borrar</a>
         </div>
       </div>
 

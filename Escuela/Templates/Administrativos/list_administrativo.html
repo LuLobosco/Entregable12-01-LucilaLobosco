@@ -25,7 +25,8 @@ Lista de administrativos
           <h5 class="card-title"> {{administrativo.name}}</h5>
           <p class="card-text"> Edad: {{administrativo.age}}</p>
           <p>Usuario activo? {{administrativo.activo}}</p>
-          <a href="#" class="btn btn-primary">Ver</a>
+          <a href="/Administrativos/update_administrativo/{{administrativo.id}}/" class="btn btn-primary">Actualizar</a>
+          <a href="/Administrativos/delete_administrativo/{{administrativo.id}}/" class="btn btn-danger">Borrar</a>
         </div>
       </div>
 

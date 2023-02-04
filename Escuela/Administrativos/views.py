@@ -40,10 +40,10 @@ def list_administrativo(request):
     }
     return render(request,'Administrativos/list_administrativo.html', context = context )
 
-def update_administrativo(request,id):
+def update_administrativo(request,pk):
 
     if  request.method == 'GET':
-        administrativo = Administrativos.objects.get(id=id)
+        administrativo = Administrativos.objects.get(id=pk)
         context = {
             'form' : AdministrativoForm(
                 initial = {
@@ -57,7 +57,7 @@ def update_administrativo(request,id):
 
     elif request.method == 'POST':
         form = AdministrativoForm(request.POST)
-        administrativo = Administrativos.objects.get(id=id)
+        administrativo = Administrativos.objects.get(id=pk)
         if form.is_valid():
             administrativo.name = form.cleaned_data['name']
             administrativo.age = form.cleaned_data['age']
@@ -72,9 +72,9 @@ def update_administrativo(request,id):
                 'form_errors': form.erros,
                 'form' : AdministrativoForm()
             }
-        return render(request, 'Administrativo/update_Administrativo.html', context=context)
+        return render(request, 'Administrativos/update_administrativo.html', context=context)
 
 class AdministrativoDeleteView(DeleteView):
     model = Administrativos
-    template_name = 'Administrativo/delete_Administrativo.html'
-    success_url = '/Administrativo/list_Administrativo/'
+    template_name = 'Administrativos/delete_administrativo.html'
+    success_url = '/Administrativos/list_administrativo/'

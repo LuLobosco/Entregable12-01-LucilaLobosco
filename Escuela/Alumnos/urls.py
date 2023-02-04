@@ -1,5 +1,5 @@
 from django.urls import path
-from Alumnos.views import create_alumno, list_alumno,update_alumno, AlumnosListViews,AlumnosDeleteView
+from Alumnos.views import create_alumno, list_alumno,update_alumno,AlumnosDeleteView
 
 urlpatterns = [
     path('create_alumno/',create_alumno),
